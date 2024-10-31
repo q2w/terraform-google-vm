@@ -22,7 +22,7 @@ spec:
   info:
     title: Managed Instance Group (MIG)
     source:
-      repo: https://github.com/terraform-google-modules/terraform-google-vm
+      repo: https://github.com/q2w/terraform-google-vm
       sourceType: git
       dir: /modules/mig
     version: 12.1.0
@@ -181,7 +181,7 @@ spec:
         required: true
         connections:
         - source:
-            source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
+            source: github.com/q2w/terraform-google-vm//modules/instance_template
             version: ~> 12.0
           spec:
             outputExpr: self_link

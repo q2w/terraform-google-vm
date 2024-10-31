@@ -22,7 +22,7 @@ spec:
   info:
     title: instance_template
     source:
-      repo: https://github.com/terraform-google-modules/terraform-google-vm
+      repo: https://github.com/q2w/terraform-google-vm
       sourceType: git
       dir: /modules/instance_template
     version: 12.1.0
@@ -226,24 +226,24 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-memorystore
-              version: ~> 10.0
+              version: ~> 12.0
             spec:
-              outputExpr: env_vars
+              outputExpr: '{"REDIS_HOST": host, "REDIS_PORT": port}'
           - source:
-              source: github.com/terraform-google-modules/terraform-google-sql-db//modules/postgresql
-              version: ~> 21.0
+              source: github.com/q2w/terraform-google-sql-db//modules/postgresql
+              version: ~> 23.0
             spec:
-              outputExpr: env_vars
+              outputExpr: '{"CLOUD_SQL_DATABASE_HOST" : instance_first_ip_address, "CLOUD_SQL_DATABASE_CONNECTION_NAME" : instance_connection_name, "CLOUD_SQL_DATABASE_NAME" : env_vars.CLOUD_SQL_DATABASE_NAME}'
           - source:
-              source: github.com/terraform-google-modules/terraform-google-sql-db//modules/mysql
-              version: ~> 22.0
+              source: github.com/q2w/terraform-google-sql-db//modules/mysql
+              version: ~> 23.0
             spec:
-              outputExpr: env_vars
+              outputExpr: '{"CLOUD_SQL_DATABASE_HOST" : instance_first_ip_address, "CLOUD_SQL_DATABASE_CONNECTION_NAME" : instance_connection_name, "CLOUD_SQL_DATABASE_NAME" : env_vars.CLOUD_SQL_DATABASE_NAME}'
           - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
-              version: ~> 4.3
+              version: ~> 4.4
             spec:
-              outputExpr: env_vars
+              outputExpr: '{"SERVICE_ACCOUNT_EMAIL" : email, "SERVICE_ACCOUNT_IAM_EMAIL" : iam_email}'
       - name: min_cpu_platform
         description: "Specifies a minimum CPU platform. Applicable values are the friendly names of CPU platforms, such as Intel Haswell or Intel Skylake. See the complete list: https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform"
         varType: string
@@ -291,7 +291,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
-              version: ~> 4.3
+              version: ~> 4.4
             spec:
               outputExpr: email
               inputPath: email
