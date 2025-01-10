@@ -27,7 +27,7 @@ resource "random_string" "suffix" {
 
 module "kms" {
   source  = "terraform-google-modules/kms/google"
-  version = "3.0.0"
+  version = "3.2.0"
 
   keyring              = "${var.keyring}-${local.default_suffix}"
   location             = var.location
@@ -89,7 +89,7 @@ module "instance_template" {
 
 module "compute_instance" {
   source  = "terraform-google-modules/vm/google//modules/compute_instance"
-  version = "~> 12.0"
+  version = "~> 13.0"
 
   region              = var.region
   subnetwork          = var.subnetwork
